@@ -12,8 +12,8 @@ export type booleanParameterProps = {
 }
 
 export type selectParameterProps = {
-    values: string[],
-    value: number, // the index of the selected value
+    options: string[],
+    value: string,
 }
 
 export type parameterPropTypes = unitsParameterProps | unitlessParameterProps | booleanParameterProps | selectParameterProps

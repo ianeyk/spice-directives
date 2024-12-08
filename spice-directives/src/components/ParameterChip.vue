@@ -2,18 +2,17 @@
 import type { booleanParameterProps, selectParameterProps, unitlessParameterProps, unitsParameterProps } from '@/types';
 import type { Component } from 'vue';
 
-const props = defineProps<{
+defineProps<{
     name: string,
     parameterType: Component,
     parameterProps: unitsParameterProps | unitlessParameterProps | booleanParameterProps | selectParameterProps,
 }>()
-console.log(props.parameterProps)
 </script>
 
 <template>
   <div class="outer">
     <h1 class="name">{{ name }}</h1>
-    <component :is="parameterType" :v-bind="parameterProps"></component>
+    <component :is="parameterType" v-bind="parameterProps"></component>
   </div>
 </template>
 

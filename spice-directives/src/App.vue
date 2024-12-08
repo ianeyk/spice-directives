@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import ParameterChip from './components/ParameterChip.vue';
+import ParameterChipSelect from './components/ParameterChipSelect.vue';
+import ParameterChipUnitless from './components/ParameterChipUnitless.vue';
 import ParameterChipUnits from './components/ParameterChipUnits.vue';
 
 </script>
@@ -16,9 +18,22 @@ import ParameterChipUnits from './components/ParameterChipUnits.vue';
 
     <main>
       <div class="chipContainer">
+        <ParameterChip name="Sweep" :parameterType="ParameterChipSelect" :parameterProps="{'options': ['AC', 'DC', 'rocking', 'rolling'], 'value': 'AC'}" />
         <ParameterChip name="Starting Value" :parameterType="ParameterChipUnits" :parameterProps="{'value': 0, 'units': 'V'}" />
         <ParameterChip name="Ending Value" :parameterType="ParameterChipUnits" :parameterProps="{'value': 5, 'units': 'V'}" />
         <ParameterChip name="Voltage Step" :parameterType="ParameterChipUnits" :parameterProps="{'value': 0.01, 'units': 'V'}" />
+        <ParameterChip name="N Steps" :parameterType="ParameterChipUnitless" :parameterProps="{'value': 100}" />
+        <ParameterChip name="N Steps" :parameterType="ParameterChipUnitless" :parameterProps="{'value': 100}" />
+        <ParameterChip name="N Steps" :parameterType="ParameterChipUnitless" :parameterProps="{'value': 100}" />
+        <ParameterChip name="N Steps" :parameterType="ParameterChipUnitless" :parameterProps="{'value': 100}" />
+        <ParameterChip name="N Steps" :parameterType="ParameterChipUnitless" :parameterProps="{'value': 100}" />
+        <ParameterChip name="N Steps" :parameterType="ParameterChipUnitless" :parameterProps="{'value': 100}" />
+        <ParameterChip name="N Steps" :parameterType="ParameterChipUnitless" :parameterProps="{'value': 100}" />
+        <ParameterChip name="N Steps" :parameterType="ParameterChipUnitless" :parameterProps="{'value': 100}" />
+        <ParameterChip name="N Steps" :parameterType="ParameterChipUnitless" :parameterProps="{'value': 100}" />
+        <ParameterChip name="N Steps" :parameterType="ParameterChipUnitless" :parameterProps="{'value': 100}" />
+        <ParameterChip name="N Steps" :parameterType="ParameterChipUnitless" :parameterProps="{'value': 100}" />
+        <ParameterChip name="N Steps" :parameterType="ParameterChipUnitless" :parameterProps="{'value': 100}" />
       </div>
     </main>
 </template>
@@ -43,13 +58,16 @@ p.instructions {
 }
 
 main {
-  display: block;
+  display: flex;
   line-height: 1.5;
+  justify-content: center;
 }
 
 .chipContainer {
   display: flex;
-  justify-content: center;
   margin-top: 1rem;
+  padding-bottom: 1rem;
+  width: 80%;
+  overflow-x: scroll;
 }
 </style>

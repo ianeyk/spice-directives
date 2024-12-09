@@ -25,3 +25,5 @@ export type selectParameterProps = {
 export type parameterPropTypes = unitsParameterProps | unitlessParameterProps | textParameterProps | booleanParameterProps | selectParameterProps
 
 export type siSuffix = 'p' | 'n' | 'u' | 'm' | 'unity' | 'k' | 'Meg' | 'G' | 'T'
+
+export type parameterChipStatus = 'optionalUnvalid' | 'optionalvalid' | 'requiredUnvalid' | 'requiredvalid'

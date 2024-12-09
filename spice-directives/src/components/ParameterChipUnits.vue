@@ -5,16 +5,21 @@ import { computed, ref, type ComputedRef, type Ref } from 'vue';
 
 const props = defineProps<unitsParameterProps>()
 
-const parameterValue: Ref<number> = ref(props.value)
 const parameterSuffix: Ref<siSuffix> = ref('unity')
+const rawParameterMantissa: Ref<number | string> = ref(props.value)
+const parameterValue: ComputedRef<number> = computed(() => typeof(rawParameterMantissa.value) === "number" ? rawParameterMantissa.value : NaN)
 
 const parameter: ComputedRef<number> = computed(() => parameterValue.value * siSuffixToExponent[parameterSuffix.value])
+
+const valid: ComputedRef<boolean> = computed(() => {
+  return !Number.isNaN(parameter.value)
+})
 
 </script>
 
 <template>
     <div class="value">
-      <input type="number" v-model="parameterValue">
+      <input type="number" v-model="rawParameterMantissa">
       <select v-model="parameterSuffix">
         <option value='p'>p{{ units }}</option>
         <option value='n'>n{{ units }}</option>

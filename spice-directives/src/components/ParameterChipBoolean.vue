@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { booleanParameterProps } from '@/types';
-import { ref, type Ref } from 'vue';
+import { computed, ref, type ComputedRef, type Ref } from 'vue';
 
 const props = withDefaults(defineProps<booleanParameterProps>(),
 {
@@ -9,6 +9,7 @@ const props = withDefaults(defineProps<booleanParameterProps>(),
 })
 
 const parameter: Ref<boolean> = ref(props.value)
+const valid: ComputedRef<boolean> = computed(() => parameter.value)
 
 const toggleValue = () => {
     parameter.value = !parameter.value

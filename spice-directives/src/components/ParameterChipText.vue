@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import type { textParameterProps } from '@/types';
-import { ref, type Ref } from 'vue';
+import { computed, ref, type ComputedRef, type Ref } from 'vue';
 
 const props = defineProps<textParameterProps>()
 
 const parameter: Ref<string> = ref(props.value)
+const valid: ComputedRef<boolean> = computed(() => parameter.value.length > 0)
 
 </script>
 

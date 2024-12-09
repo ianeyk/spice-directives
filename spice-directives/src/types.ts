@@ -9,6 +9,8 @@ export type unitlessParameterProps = {
 
 export type booleanParameterProps = {
     value: boolean,
+    trueMessage?: string,
+    falseMessage?: string,
 }
 
 export type selectParameterProps = {

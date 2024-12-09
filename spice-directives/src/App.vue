@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import ParameterChip from './components/ParameterChip.vue';
+import ParameterChipBoolean from './components/ParameterChipBoolean.vue';
 import ParameterChipSelect from './components/ParameterChipSelect.vue';
 import ParameterChipUnitless from './components/ParameterChipUnitless.vue';
 import ParameterChipUnits from './components/ParameterChipUnits.vue';
@@ -22,6 +23,7 @@ import ParameterChipUnits from './components/ParameterChipUnits.vue';
         <ParameterChip name="Starting Value" :parameterType="ParameterChipUnits" :parameterProps="{'value': 0, 'units': 'V'}" />
         <ParameterChip name="Ending Value" :parameterType="ParameterChipUnits" :parameterProps="{'value': 5, 'units': 'V'}" />
         <ParameterChip name="Voltage Step" :parameterType="ParameterChipUnits" :parameterProps="{'value': 0.01, 'units': 'V'}" />
+        <ParameterChip name="Boolean" :parameterType="ParameterChipBoolean" :parameterProps="{'value': true}" />
         <ParameterChip name="N Steps" :parameterType="ParameterChipUnitless" :parameterProps="{'value': 100}" />
         <ParameterChip name="N Steps" :parameterType="ParameterChipUnitless" :parameterProps="{'value': 100}" />
         <ParameterChip name="N Steps" :parameterType="ParameterChipUnitless" :parameterProps="{'value': 100}" />

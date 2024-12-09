@@ -18,3 +18,10 @@ select {
     font-size: xx-large;
     border-radius: 6px;
 }
+
+button {
+    display: inline-block;
+    height: 4rem;
+    font-size: xx-large;
+    border-radius: 6px;
+}

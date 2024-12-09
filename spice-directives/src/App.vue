@@ -19,23 +19,23 @@ import ParameterChipUnits from './components/ParameterChipUnits.vue';
 
     <main>
       <div class="chipContainer">
-        <ParameterChip name="Sweep" :parameterType="ParameterChipSelect" :parameterProps="{'options': ['AC', 'DC', 'rocking', 'rolling'], 'value': 'AC'}" :valid="true" />
-        <ParameterChip name="N Steps" :parameterType="ParameterChipUnitless" :parameterProps="{'value': 100}" :valid="true" />
-        <ParameterChip name="Starting Value" :parameterType="ParameterChipUnits" :parameterProps="{'value': 0, 'units': 'V'}" />
-        <ParameterChip name="Ending Value" :parameterType="ParameterChipUnits" :parameterProps="{'value': 5, 'units': 'V'}" />
-        <ParameterChip name="Voltage Step" :parameterType="ParameterChipUnits" :parameterProps="{'value': 0.01, 'units': 'V'}" />
-        <ParameterChip name="Boolean" :parameterType="ParameterChipBoolean" :parameterProps="{'value': true}" :optional="true"/>
-        <ParameterChip name="N Steps" :parameterType="ParameterChipUnitless" :parameterProps="{'value': 100}" :optional="true" :valid="true"/>
-        <ParameterChip name="N Steps" :parameterType="ParameterChipUnitless" :parameterProps="{'value': 100}" />
-        <ParameterChip name="N Steps" :parameterType="ParameterChipUnitless" :parameterProps="{'value': 100}" />
-        <ParameterChip name="N Steps" :parameterType="ParameterChipUnitless" :parameterProps="{'value': 100}" />
-        <ParameterChip name="N Steps" :parameterType="ParameterChipUnitless" :parameterProps="{'value': 100}" />
-        <ParameterChip name="N Steps" :parameterType="ParameterChipUnitless" :parameterProps="{'value': 100}" />
-        <ParameterChip name="N Steps" :parameterType="ParameterChipUnitless" :parameterProps="{'value': 100}" />
-        <ParameterChip name="N Steps" :parameterType="ParameterChipUnitless" :parameterProps="{'value': 100}" />
-        <ParameterChip name="N Steps" :parameterType="ParameterChipUnitless" :parameterProps="{'value': 100}" />
-        <ParameterChip name="N Steps" :parameterType="ParameterChipUnitless" :parameterProps="{'value': 100}" />
-        <ParameterChip name="N Steps" :parameterType="ParameterChipUnitless" :parameterProps="{'value': 100}" />
+        <ParameterChip name="Sweep" :inputComponent="ParameterChipSelect" :parameterProps="{'options': ['AC', 'DC', 'rocking', 'rolling'], 'value': 'AC'}" :valid="true" />
+        <ParameterChip name="N Steps" :inputComponent="ParameterChipUnitless" :parameterProps="{'value': 100}" :valid="true" />
+        <ParameterChip name="Starting Value" :inputComponent="ParameterChipUnits" :parameterProps="{'value': 0, 'units': 'V'}" :valid="true" />
+        <ParameterChip name="Ending Value" :inputComponent="ParameterChipUnits" :parameterProps="{'value': 5, 'units': 'V'}" :valid="true" />
+        <ParameterChip name="Voltage Step" :inputComponent="ParameterChipUnits" :parameterProps="{'value': 0.01, 'units': 'V'}":valid="true" />
+        <ParameterChip name="Boolean" :inputComponent="ParameterChipBoolean" :parameterProps="{'value': true}" :optional="true" :valid="true"/>
+        <ParameterChip name="N Steps" :inputComponent="ParameterChipUnitless" :parameterProps="{'value': 100}" :optional="true" :valid="true"/>
+        <ParameterChip name="N Steps" :inputComponent="ParameterChipUnitless" :parameterProps="{'value': 100}" :valid="true" />
+        <ParameterChip name="N Steps" :inputComponent="ParameterChipUnitless" :parameterProps="{'value': 100}" :valid="true" />
+        <ParameterChip name="N Steps" :inputComponent="ParameterChipUnitless" :parameterProps="{'value': 100}" :valid="true" />
+        <ParameterChip name="N Steps" :inputComponent="ParameterChipUnitless" :parameterProps="{'value': 100}" :valid="true" />
+        <ParameterChip name="N Steps" :inputComponent="ParameterChipUnitless" :parameterProps="{'value': 100}" :valid="true" />
+        <ParameterChip name="N Steps" :inputComponent="ParameterChipUnitless" :parameterProps="{'value': 100}" :valid="true" />
+        <ParameterChip name="N Steps" :inputComponent="ParameterChipUnitless" :parameterProps="{'value': 100}" :valid="true" />
+        <ParameterChip name="N Steps" :inputComponent="ParameterChipUnitless" :parameterProps="{'value': 100}" :valid="true" />
+        <ParameterChip name="N Steps" :inputComponent="ParameterChipUnitless" :parameterProps="{'value': 100}" :valid="true" />
+        <ParameterChip name="N Steps" :inputComponent="ParameterChipUnitless" :parameterProps="{'value': 100}" :valid="true" />
       </div>
     </main>
 </template>

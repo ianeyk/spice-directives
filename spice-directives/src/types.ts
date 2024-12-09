@@ -26,4 +26,9 @@ export type parameterPropTypes = unitsParameterProps | unitlessParameterProps | 
 
 export type siSuffix = 'p' | 'n' | 'u' | 'm' | 'unity' | 'k' | 'Meg' | 'G' | 'T'
 
-export type parameterChipStatus = 'optionalUnvalid' | 'optionalvalid' | 'requiredUnvalid' | 'requiredvalid'
+export type parameterChipStatus = 'optionalInvalid' | 'optionalvalid' | 'requiredInvalid' | 'requiredvalid'
+
+export type parameterChipValue = {
+    parameter: number | string | boolean,
+    valid: boolean,
+}

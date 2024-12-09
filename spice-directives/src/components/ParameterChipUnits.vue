@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import { siSuffixToExponent } from '@/constants';
-import type { siSuffix, unitsParameterProps } from '@/types';
-import { computed, ref, type ComputedRef, type Ref } from 'vue';
+import type { siSuffix, unitsParameterProps, parameterChipValue } from '@/types';
+import { computed, ref, watch, type ComputedRef, type Ref } from 'vue';
 
 const props = defineProps<unitsParameterProps>()
+const emit = defineEmits<{'parameterChanged': [parameterChipValue]}>()
 
 const parameterSuffix: Ref<siSuffix> = ref('unity')
 const rawParameterMantissa: Ref<number | string> = ref(props.value)
@@ -14,6 +15,13 @@ const parameter: ComputedRef<number> = computed(() => parameterValue.value * siS
 const valid: ComputedRef<boolean> = computed(() => {
   return !Number.isNaN(parameter.value)
 })
+
+watch([parameter, valid], () => {
+  emit('parameterChanged', {
+    parameter: parameter.value,
+    valid: valid.value,
+  })
+});
 
 </script>
 

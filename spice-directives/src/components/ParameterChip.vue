@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import type { booleanParameterProps, parameterChipStatus, selectParameterProps, textParameterProps, unitlessParameterProps, unitsParameterProps } from '@/types';
-import { computed, ref, type Component, type ComputedRef, type CSSProperties, type Ref } from 'vue';
+import type { booleanParameterProps, parameterChipStatus, parameterChipValue, selectParameterProps, textParameterProps, unitlessParameterProps, unitsParameterProps } from '@/types';
+import { computed, ref, type Component, type ComputedRef, type Ref } from 'vue';
 
 const props = withDefaults(defineProps<{
     name: string,
     optional?: boolean,
     valid?: boolean,
-    parameterType: Component,
+    inputComponent: Component,
     parameterProps: unitsParameterProps | unitlessParameterProps | textParameterProps | booleanParameterProps | selectParameterProps,
 }>(), {
     optional: false,
@@ -15,10 +15,19 @@ const props = withDefaults(defineProps<{
 
 const optional: Ref<boolean> = ref(props.optional)
 const valid: Ref<boolean> = ref(props.valid)
+const parameter: Ref<number | string | boolean> = ref(props.parameterProps.value)
+
+const parameterChanged = (newValues: parameterChipValue) => {
+    parameter.value = newValues.parameter
+    valid.value = newValues.valid
+    console.log("parent noticed that a parameter has changed")
+    console.log(parameter.value)
+    console.log(valid.value)
+}
 
 const status: ComputedRef<parameterChipStatus> = computed(() => optional.value ?
-    (valid.value ? 'optionalvalid' : 'optionalUnvalid') :
-    (valid.value ? 'requiredvalid' : 'requiredUnvalid')
+    (valid.value ? 'optionalvalid' : 'optionalInvalid') :
+    (valid.value ? 'requiredvalid' : 'requiredInvalid')
 )
 
 </script>
@@ -26,7 +35,7 @@ const status: ComputedRef<parameterChipStatus> = computed(() => optional.value ?
 <template>
   <div :class="['outer', status]">
     <h1 class="name">{{ name }}</h1>
-    <component :is="parameterType" v-bind="parameterProps"></component>
+    <component :is="inputComponent" v-bind="parameterProps" @parameter-changed="parameterChanged"></component>
   </div>
 </template>
 
@@ -47,7 +56,7 @@ const status: ComputedRef<parameterChipStatus> = computed(() => optional.value ?
     background-color: lightgreen;
 }
 
-.outer.optionalUnvalid {
+.outer.optionalInvalid {
     background-color: lightgrey;
 }
 
@@ -55,7 +64,7 @@ const status: ComputedRef<parameterChipStatus> = computed(() => optional.value ?
     background-color: green;
 }
 
-.outer.requiredUnvalid {
+.outer.requiredInvalid {
     background-color: orange;
 }
 

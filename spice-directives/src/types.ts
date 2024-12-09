@@ -7,6 +7,10 @@ export type unitlessParameterProps = {
     value: number,
 }
 
+export type textParameterProps = {
+    value: string,
+}
+
 export type booleanParameterProps = {
     value: boolean,
     trueMessage?: string,
@@ -18,4 +22,6 @@ export type selectParameterProps = {
     value: string,
 }
 
-export type parameterPropTypes = unitsParameterProps | unitlessParameterProps | booleanParameterProps | selectParameterProps
+export type parameterPropTypes = unitsParameterProps | unitlessParameterProps | textParameterProps | booleanParameterProps | selectParameterProps
+
+export type siSuffix = 'p' | 'n' | 'u' | 'm' | 'unity' | 'k' | 'Meg' | 'G' | 'T'

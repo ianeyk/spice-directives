@@ -1,12 +1,16 @@
 <script setup lang="ts">
 import type { unitlessParameterProps } from '@/types';
+import { ref, type Ref } from 'vue';
 
-defineProps<unitlessParameterProps>()
+const props = defineProps<unitlessParameterProps>()
+
+const parameter: Ref<number> = ref(props.value)
+
 </script>
 
 <template>
     <div class="value">
-      <input type="text" :value=value>
+      <input type="number" v-model="parameter">
     </div>
 </template>
 

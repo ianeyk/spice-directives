@@ -2,13 +2,13 @@
 import type { booleanParameterProps } from '@/types';
 import { ref, type Ref } from 'vue';
 
-const parameter: Ref<boolean> = ref(false)
-
-withDefaults(defineProps<booleanParameterProps>(),
+const props = withDefaults(defineProps<booleanParameterProps>(),
 {
     trueMessage: 'True',
     falseMessage: 'False',
 })
+
+const parameter: Ref<boolean> = ref(props.value)
 
 const toggleValue = () => {
     parameter.value = !parameter.value

@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { selectParameterProps } from '@/types';
+import type { textParameterProps } from '@/types';
 import { ref, type Ref } from 'vue';
 
-const props = defineProps<selectParameterProps>()
+const props = defineProps<textParameterProps>()
 
 const parameter: Ref<string> = ref(props.value)
 
@@ -10,9 +10,7 @@ const parameter: Ref<string> = ref(props.value)
 
 <template>
     <div class="value">
-      <select v-model="parameter">
-        <option v-for="option in options" :value="option">{{ option }}</option>
-      </select>
+      <input type="text" v-model="parameter">
     </div>
 </template>
 

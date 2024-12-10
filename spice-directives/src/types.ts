@@ -1,12 +1,13 @@
 import type { Component } from "vue"
 
 export type unitsParameterProps = {
-    value: number,
+    value: number | string,
     units: string,
+    unitPrefix?: siPrefix,
 }
 
 export type unitlessParameterProps = {
-    value: number,
+    value: number | string,
 }
 
 export type textParameterProps = {
@@ -26,7 +27,7 @@ export type selectParameterProps = {
 
 export type parameterProps = unitsParameterProps | unitlessParameterProps | textParameterProps | booleanParameterProps | selectParameterProps
 
-export type siSuffix = 'p' | 'n' | 'u' | 'm' | 'unity' | 'k' | 'Meg' | 'G' | 'T'
+export type siPrefix = 'p' | 'n' | 'u' | 'm' | 'unity' | 'k' | 'Meg' | 'G' | 'T'
 
 export type parameterChipStatus = 'optionalInvalid' | 'optionalvalid' | 'requiredInvalid' | 'requiredvalid'
 

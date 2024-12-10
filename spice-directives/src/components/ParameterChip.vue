@@ -1,14 +1,8 @@
 <script setup lang="ts">
-import type { booleanParameterProps, parameterChipStatus, parameterChipValue, selectParameterProps, textParameterProps, unitlessParameterProps, unitsParameterProps } from '@/types';
+import type { booleanParameterProps, parameterChipStatus, parameterChipProps, parameterChipValue, selectParameterProps, textParameterProps, unitlessParameterProps, unitsParameterProps } from '@/types';
 import { computed, ref, type Component, type ComputedRef, type Ref } from 'vue';
 
-const props = withDefaults(defineProps<{
-    name: string,
-    optional?: boolean,
-    valid?: boolean,
-    inputComponent: Component,
-    parameterProps: unitsParameterProps | unitlessParameterProps | textParameterProps | booleanParameterProps | selectParameterProps,
-}>(), {
+const props = withDefaults(defineProps<parameterChipProps>(), {
     optional: false,
     valid: false,
 })
@@ -20,9 +14,6 @@ const parameter: Ref<number | string | boolean> = ref(props.parameterProps.value
 const parameterChanged = (newValues: parameterChipValue) => {
     parameter.value = newValues.parameter
     valid.value = newValues.valid
-    console.log("parent noticed that a parameter has changed")
-    console.log(parameter.value)
-    console.log(valid.value)
 }
 
 const status: ComputedRef<parameterChipStatus> = computed(() => optional.value ?
@@ -43,8 +34,6 @@ const status: ComputedRef<parameterChipStatus> = computed(() => optional.value ?
 
 .outer {
     display: inline-block;
-    width: 12rem;
-    /* background-color: lightgrey; */
     padding: 1rem;
     padding-top: 0;
     margin-left: 0.5rem;

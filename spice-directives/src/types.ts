@@ -1,3 +1,5 @@
+import type { Component } from "vue"
+
 export type unitsParameterProps = {
     value: number,
     units: string,
@@ -22,7 +24,7 @@ export type selectParameterProps = {
     value: string,
 }
 
-export type parameterPropTypes = unitsParameterProps | unitlessParameterProps | textParameterProps | booleanParameterProps | selectParameterProps
+export type parameterProps = unitsParameterProps | unitlessParameterProps | textParameterProps | booleanParameterProps | selectParameterProps
 
 export type siSuffix = 'p' | 'n' | 'u' | 'm' | 'unity' | 'k' | 'Meg' | 'G' | 'T'
 
@@ -31,4 +33,12 @@ export type parameterChipStatus = 'optionalInvalid' | 'optionalvalid' | 'require
 export type parameterChipValue = {
     parameter: number | string | boolean,
     valid: boolean,
+}
+
+export type parameterChipProps = {
+    name: string,
+    optional?: boolean,
+    valid?: boolean,
+    inputComponent: Component,
+    parameterProps: parameterProps,
 }

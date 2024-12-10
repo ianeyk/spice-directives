@@ -4,6 +4,9 @@ import ParameterChipBoolean from './components/ParameterChipBoolean.vue';
 import ParameterChipSelect from './components/ParameterChipSelect.vue';
 import ParameterChipUnitless from './components/ParameterChipUnitless.vue';
 import ParameterChipUnits from './components/ParameterChipUnits.vue';
+import ParameterGroup from './components/ParameterGroup.vue';
+
+const docOpt1 = ".ac <oct, dec, lin> <Nsteps> <StartFreq> <EndFreq>"
 
 </script>
 
@@ -19,7 +22,8 @@ import ParameterChipUnits from './components/ParameterChipUnits.vue';
 
     <main>
       <div class="chipContainer">
-        <ParameterChip name="Sweep" :inputComponent="ParameterChipSelect" :parameterProps="{'options': ['AC', 'DC', 'rocking', 'rolling'], 'value': 'AC'}" :valid="true" />
+        <ParameterGroup docOpt=""></ParameterGroup>
+        <!-- <ParameterChip name="Sweep" :inputComponent="ParameterChipSelect" :parameterProps="{'options': ['AC', 'DC', 'rocking', 'rolling'], 'value': 'AC'}" :valid="true" />
         <ParameterChip name="N Steps" :inputComponent="ParameterChipUnitless" :parameterProps="{'value': 100}" :valid="true" />
         <ParameterChip name="Starting Value" :inputComponent="ParameterChipUnits" :parameterProps="{'value': 0, 'units': 'V'}" :valid="true" />
         <ParameterChip name="Ending Value" :inputComponent="ParameterChipUnits" :parameterProps="{'value': 5, 'units': 'V'}" :valid="true" />
@@ -35,7 +39,7 @@ import ParameterChipUnits from './components/ParameterChipUnits.vue';
         <ParameterChip name="N Steps" :inputComponent="ParameterChipUnitless" :parameterProps="{'value': 100}" :valid="true" />
         <ParameterChip name="N Steps" :inputComponent="ParameterChipUnitless" :parameterProps="{'value': 100}" :valid="true" />
         <ParameterChip name="N Steps" :inputComponent="ParameterChipUnitless" :parameterProps="{'value': 100}" :valid="true" />
-        <ParameterChip name="N Steps" :inputComponent="ParameterChipUnitless" :parameterProps="{'value': 100}" :valid="true" />
+        <ParameterChip name="N Steps" :inputComponent="ParameterChipUnitless" :parameterProps="{'value': 100}" :valid="true" /> -->
       </div>
     </main>
 </template>

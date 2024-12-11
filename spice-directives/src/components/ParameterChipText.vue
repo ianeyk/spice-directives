@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import type { parameterChipValue, textParameterProps } from '@/types';
+import type { parameterChipInputValue, parameterChipValue, textParameterProps } from '@/types';
 import { computed, ref, watch, type ComputedRef, type Ref } from 'vue';
 
 const props = defineProps<textParameterProps>()
-const emit = defineEmits<{'parameterChanged': [parameterChipValue]}>()
+const emit = defineEmits<{'parameterChanged': [parameterChipInputValue]}>()
 
 const parameter: Ref<string> = ref(props.value)
 const valid: ComputedRef<boolean> = computed(() => parameter.value.length > 0)

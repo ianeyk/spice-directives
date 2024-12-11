@@ -23,7 +23,7 @@ const docOpt1 = ".ac <oct, dec, lin> <Nsteps> <StartFreq> <EndFreq>"
 
     <main>
       <div class="chipContainer">
-        <ParameterGroup docOpt="<_Source Name:V1> <Vstart:0:V> <Vstop:5:V> <Vincrement:10:m:V> [<_Source Name 2> <Vstart2:V> <Vstop:V> [<Vincr2:V>]]"></ParameterGroup>
+        <ParameterGroup docOpt="<_Source Name:V1> <Vstart:0:V> <Vstop:5:V> <Vincrement:10:m:V> [<_Source Name 2> <Vstart2:V> <Vstop:V> [<Vincr2:V>]]" :topLevel="true" :index="0" :optional="false"></ParameterGroup>
         <!-- <ParameterChip name="Sweep" :inputComponent="ParameterChipSelect" :parameterProps="{'options': ['AC', 'DC', 'rocking', 'rolling'], 'value': 'AC'}" :valid="true" />
         <ParameterChip name="N Steps" :inputComponent="ParameterChipUnitless" :parameterProps="{'value': 100}" :valid="true" />
         <ParameterChip name="Starting Value" :inputComponent="ParameterChipUnits" :parameterProps="{'value': 0, 'units': 'V'}" :valid="true" />

@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { siPrefixToExponent } from '@/constants';
-import type { siPrefix, unitsParameterProps, parameterChipValue } from '@/types';
+import type { siPrefix, unitsParameterProps, parameterChipValue, parameterChipInputValue } from '@/types';
 import { computed, ref, watch, type ComputedRef, type Ref } from 'vue';
 
 const props = defineProps<unitsParameterProps>()
-const emit = defineEmits<{'parameterChanged': [parameterChipValue]}>()
+const emit = defineEmits<{'parameterChanged': [parameterChipInputValue]}>()
 
 const parameterSuffix: Ref<siPrefix> = ref(props.unitPrefix ? props.unitPrefix : 'unity')
 const rawParameterMantissa: Ref<number | string> = ref(props.value)

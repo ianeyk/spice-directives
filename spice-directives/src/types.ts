@@ -35,9 +35,16 @@ export type siPrefix = 'p' | 'n' | 'u' | 'm' | 'unity' | 'k' | 'Meg' | 'G' | 'T'
 
 export type parameterChipStatus = 'optionalInvalid' | 'optionalvalid' | 'requiredInvalid' | 'requiredvalid'
 
-export type parameterChipValue = {
+export type parameterChipInputValue = {
     parameter: number | string | boolean,
     valid: boolean,
+}
+
+export type parameterChipValue = {
+    index: number,
+    parameter: number | string | boolean,
+    valid: boolean,
+    empty: boolean,
 }
 
 export type parameterChipProps = {

@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import type { booleanParameterProps, parameterChipStatus, parameterChipProps, parameterChipValue, selectParameterProps, textParameterProps, unitlessParameterProps, unitsParameterProps, siPrefix } from '@/types';
-import { computed, ref, type Component, type ComputedRef, type Ref } from 'vue';
+import type { booleanParameterProps, parameterChipStatus, parameterChipProps, parameterChipValue, selectParameterProps, textParameterProps, unitlessParameterProps, unitsParameterProps, siPrefix, parameterChipInputValue } from '@/types';
+import { computed, ref, watch, type Component, type ComputedRef, type Ref } from 'vue';
 import ParameterChipBoolean from './ParameterChipBoolean.vue';
 import ParameterChipText from './ParameterChipText.vue';
 import ParameterChipSelect from './ParameterChipSelect.vue';
@@ -148,23 +148,35 @@ const parseOption = (option: string, optional: boolean = false): parameterChipPr
 
 const props = defineProps<{
     docOpt: string,
+    index: number,
+    optional: boolean,
 }>()
+const emit = defineEmits<{'parameterChanged': [parameterChipValue]}>()
 
 const parsedProps: parameterChipProps = parseOption(props.docOpt, true)
 
-const optional: Ref<boolean> = ref(parsedProps.optional)
 const valid: Ref<boolean> = ref(parsedProps.valid)
 const parameter: Ref<number | string | boolean> = ref(parsedProps.parameterProps.value)
 
-const parameterChanged = (newValues: parameterChipValue) => {
+const parameterChanged = (newValues: parameterChipInputValue) => {
     parameter.value = newValues.parameter
     valid.value = newValues.valid
 }
 
-const status: ComputedRef<parameterChipStatus> = computed(() => optional.value ?
+const status: ComputedRef<parameterChipStatus> = computed(() => props.optional ?
     (valid.value ? 'optionalvalid' : 'optionalInvalid') :
     (valid.value ? 'requiredvalid' : 'requiredInvalid')
 )
+
+watch([parameter, valid], () => {
+  emit('parameterChanged', {
+    index: props.index,
+    parameter: parameter.value,
+    valid: valid.value,
+    empty: !valid.value,
+  })
+});
+
 
 </script>
 
@@ -174,7 +186,7 @@ const status: ComputedRef<parameterChipStatus> = computed(() => optional.value ?
     <component :is="parsedProps.inputComponent" v-bind="parsedProps.parameterProps" @parameter-changed="parameterChanged"></component>
   </div>
   <div>
-    {{ docOpt }}
+    {{ props.optional }}
   </div>
 </template>
 

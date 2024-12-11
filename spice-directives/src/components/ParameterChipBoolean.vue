@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { booleanParameterProps, parameterChipValue } from '@/types';
+import type { booleanParameterProps, parameterChipInputValue, parameterChipValue } from '@/types';
 import { computed, ref, watch, type ComputedRef, type Ref } from 'vue';
 
 const props = withDefaults(defineProps<booleanParameterProps>(),
@@ -7,7 +7,7 @@ const props = withDefaults(defineProps<booleanParameterProps>(),
     trueMessage: 'True',
     falseMessage: 'False',
 })
-const emit = defineEmits<{'parameterChanged': [parameterChipValue]}>()
+const emit = defineEmits<{'parameterChanged': [parameterChipInputValue]}>()
 
 const parameter: Ref<boolean> = ref(props.value)
 const valid: ComputedRef<boolean> = computed(() => parameter.value)

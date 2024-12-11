@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import type { parameterChipValue, selectParameterProps } from '@/types';
+import type { parameterChipInputValue, parameterChipValue, selectParameterProps } from '@/types';
 import { ref, watch, type Ref } from 'vue';
 
 const props = defineProps<selectParameterProps>()
-const emit = defineEmits<{'parameterChanged': [parameterChipValue]}>()
+const emit = defineEmits<{'parameterChanged': [parameterChipInputValue]}>()
 
 const parameter: Ref<string> = ref(props.value)
 const valid: Ref<boolean> = ref(true)

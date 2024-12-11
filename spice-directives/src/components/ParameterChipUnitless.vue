@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import type { parameterChipValue, unitlessParameterProps } from '@/types';
+import type { parameterChipInputValue, parameterChipValue, unitlessParameterProps } from '@/types';
 import { computed, ref, watch, type ComputedRef, type Ref } from 'vue';
 
 const props = defineProps<unitlessParameterProps>()
-const emit = defineEmits<{'parameterChanged': [parameterChipValue]}>()
+const emit = defineEmits<{'parameterChanged': [parameterChipInputValue]}>()
 
 const rawParameter: Ref<number | string> = ref(props.value)
 const parameter: ComputedRef<number> = computed(() => typeof(rawParameter.value) === "number" ? rawParameter.value : NaN)

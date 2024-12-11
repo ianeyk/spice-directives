@@ -63,6 +63,17 @@ const parseDocOpt = (docOpt: string): string[] => {
                 // do not ever count the brackets themselves
 }
 
+// everything starts out as optional
+// as soon as a parameter chip receives a value, it becomes non-optional
+// if one parameter chip is non-optional, then the entire parameter group is non-optional
+// if a parameter group is non-optional, then every parameter chip inside it is non-optional
+// the top level parameter group is always non-optional
+
+
+// the top level parameter group is always non-optional
+// a parameter group is optional if all of its parameter chips are empty
+// a parameter group is valid if all of its parameter chips are valid or optional
+
 </script>
 
 <template>
@@ -78,11 +89,10 @@ const parseDocOpt = (docOpt: string): string[] => {
 .parameterGroupOuter {
     display: inline-flex;
     background-color: grey;
-    padding-top: 1rem;
     padding-bottom: 1rem;
     margin-left: 1rem;
     border-radius: 10px;
-    margin-top: 1rem;
+    margin-bottom: 1rem;
     border-color: black;
     border-style: solid;
 }

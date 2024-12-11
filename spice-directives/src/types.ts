@@ -25,6 +25,10 @@ export type selectParameterProps = {
     value: string,
 }
 
+export type parameterGroupProps = {
+    docOpt: string,
+}
+
 export type parameterProps = unitsParameterProps | unitlessParameterProps | textParameterProps | booleanParameterProps | selectParameterProps
 
 export type siPrefix = 'p' | 'n' | 'u' | 'm' | 'unity' | 'k' | 'Meg' | 'G' | 'T'
@@ -38,8 +42,8 @@ export type parameterChipValue = {
 
 export type parameterChipProps = {
     name: string,
-    optional?: boolean,
-    valid?: boolean,
+    optional: boolean,
+    valid: boolean,
     inputComponent: Component,
     parameterProps: parameterProps,
 }

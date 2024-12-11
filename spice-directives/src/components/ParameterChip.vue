@@ -146,14 +146,11 @@ const parseOption = (option: string, optional: boolean = false): parameterChipPr
     }
 }
 
-const props = withDefaults(defineProps<{
+const props = defineProps<{
     docOpt: string,
-    optional: boolean,
-}>(), {
-    optional: false,
-})
+}>()
 
-const parsedProps: parameterChipProps = parseOption(props.docOpt)
+const parsedProps: parameterChipProps = parseOption(props.docOpt, true)
 
 const optional: Ref<boolean> = ref(parsedProps.optional)
 const valid: Ref<boolean> = ref(parsedProps.valid)
@@ -175,6 +172,9 @@ const status: ComputedRef<parameterChipStatus> = computed(() => optional.value ?
   <div :class="['outer', status]">
     <h1 class="name">{{ parsedProps.name }}</h1>
     <component :is="parsedProps.inputComponent" v-bind="parsedProps.parameterProps" @parameter-changed="parameterChanged"></component>
+  </div>
+  <div>
+    {{ docOpt }}
   </div>
 </template>
 

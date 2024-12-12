@@ -1,40 +1,51 @@
 <script setup lang="ts">
-import type { booleanParameterProps, parameterChipStatus, parameterChipProps, parameterChipValue, parameterProps, selectParameterProps, textParameterProps, unitlessParameterProps, unitsParameterProps, siPrefix } from '@/types';
-import { computed, ref, type Component, type ComputedRef, type Ref } from 'vue';
-import ParameterChipUnits from './ParameterChipUnits.vue';
-import ParameterChipUnitless from './ParameterChipUnitless.vue';
-import ParameterChipSelect from './ParameterChipSelect.vue';
+import { ref, type Ref } from 'vue';
 import ParameterChip from './ParameterChip.vue';
-import ParameterChipBoolean from './ParameterChipBoolean.vue';
-import ParameterChipText from './ParameterChipText.vue';
+import ParameterChipSelect from './ParameterChipSelect.vue';
 import ParameterGroup from './ParameterGroup.vue';
-
-const assert = (assertion: boolean, message: string = "") => {
-    if (!assertion) {
-        console.error("Assertion error: " + message)
-    }
-}
+import type { parameterChipValue } from '@/types';
 
 const props = defineProps<{
-    docOpt: string
+    directives: string[]
 }>()
 
-const docOptSegments: string[] = ["<_Source Name:V1> <Vstart:0:V> <Vstop:5:V> <Vincrement:10:m:V>", "<_Source Name 2> <Vstart2:V> <Vstop:V> <Vincr2:V>"]
+const directiveParts = props.directives.map((directive: string) => { return {
+    name: directive.slice(0, directive.indexOf(' ')), // everything up to the first space
+    parameters: directive.slice(directive.indexOf(' ') + 1), // everything after the first space
+}})
+
+const directiveNamesAsDocOpt: string = "<" + directiveParts.map(directive => directive.name).join(", ") + ">"
+
+const currentDirective: Ref<string> = ref(directiveParts[0].name)
+
+const parameterChanged = (newValues: parameterChipValue) => {
+    currentDirective.value = String(newValues.parameter)
+}
+
 
 </script>
 
 <template>
-    <div class="parametersOuter">
-        <div v-for="docOptSegment in docOptSegments">
-            <ParameterGroup :doc-opt="docOptSegment"></ParameterGroup>
+    <div class="chipContainer">
+        <ParameterGroup :doc-opt="directiveNamesAsDocOpt" :top-level="true" :index="0" :optional="false" @parameter-changed="parameterChanged"></ParameterGroup>
+        <div v-for="directive in directiveParts">
+            <ParameterGroup :class="directive.name == currentDirective ? 'shown' : 'hidden'" :docOpt="directive.parameters" :topLevel="true" :index="0" :optional="false"></ParameterGroup>
         </div>
     </div>
 </template>
 
 <style scoped>
 
-.parametersOuter {
-    display: flex;
+.chipContainer {
+  display: flex;
+  margin-top: 1rem;
+  padding-bottom: 1rem;
+  width: 80%;
+  overflow-x: scroll;
+}
+
+.hidden {
+    display: none;
 }
 
 </style>

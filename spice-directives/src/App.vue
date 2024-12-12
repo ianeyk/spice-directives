@@ -1,13 +1,11 @@
 <script setup lang="ts">
-import ParameterChip from './components/ParameterChip.vue';
-import ParameterChipBoolean from './components/ParameterChipBoolean.vue';
-import ParameterChipSelect from './components/ParameterChipSelect.vue';
-import ParameterChipUnitless from './components/ParameterChipUnitless.vue';
-import ParameterChipUnits from './components/ParameterChipUnits.vue';
-import ParameterGroup from './components/ParameterGroup.vue';
 import Parameters from './components/Parameters.vue';
 
-const docOpt1 = ".ac <oct, dec, lin> <Nsteps> <StartFreq> <EndFreq>"
+const directives = [
+  ".tran <Tstep> <Tstop> [<Tstart> [<dTmax>]] [<modifiers>]",
+  ".ac <oct, dec, lin> <Nsteps> <StartFreq> <EndFreq>",
+  ".dc <srcnam> <Vstart> <Vstop> <Vincr> [<srcnam2> <Vstart2> <Vstop2> <Vincr2>]",
+]
 
 </script>
 
@@ -22,26 +20,7 @@ const docOpt1 = ".ac <oct, dec, lin> <Nsteps> <StartFreq> <EndFreq>"
     </header>
 
     <main>
-      <div class="chipContainer">
-        <ParameterGroup docOpt="<_Source Name:V1> <Vstart:0:V> <Vstop:5:V> <Vincrement:10:m:V> [<_Source Name 2> <Vstart2:V> <Vstop:V> [<Vincr2:V>]]" :topLevel="true" :index="0" :optional="false"></ParameterGroup>
-        <!-- <ParameterChip name="Sweep" :inputComponent="ParameterChipSelect" :parameterProps="{'options': ['AC', 'DC', 'rocking', 'rolling'], 'value': 'AC'}" :valid="true" />
-        <ParameterChip name="N Steps" :inputComponent="ParameterChipUnitless" :parameterProps="{'value': 100}" :valid="true" />
-        <ParameterChip name="Starting Value" :inputComponent="ParameterChipUnits" :parameterProps="{'value': 0, 'units': 'V'}" :valid="true" />
-        <ParameterChip name="Ending Value" :inputComponent="ParameterChipUnits" :parameterProps="{'value': 5, 'units': 'V'}" :valid="true" />
-        <ParameterChip name="Voltage Step" :inputComponent="ParameterChipUnits" :parameterProps="{'value': 0.01, 'units': 'V'}":valid="true" />
-        <ParameterChip name="Boolean" :inputComponent="ParameterChipBoolean" :parameterProps="{'value': true}" :optional="true" :valid="true"/>
-        <ParameterChip name="N Steps" :inputComponent="ParameterChipUnitless" :parameterProps="{'value': 100}" :optional="true" :valid="true"/>
-        <ParameterChip name="N Steps" :inputComponent="ParameterChipUnitless" :parameterProps="{'value': 100}" :valid="true" />
-        <ParameterChip name="N Steps" :inputComponent="ParameterChipUnitless" :parameterProps="{'value': 100}" :valid="true" />
-        <ParameterChip name="N Steps" :inputComponent="ParameterChipUnitless" :parameterProps="{'value': 100}" :valid="true" />
-        <ParameterChip name="N Steps" :inputComponent="ParameterChipUnitless" :parameterProps="{'value': 100}" :valid="true" />
-        <ParameterChip name="N Steps" :inputComponent="ParameterChipUnitless" :parameterProps="{'value': 100}" :valid="true" />
-        <ParameterChip name="N Steps" :inputComponent="ParameterChipUnitless" :parameterProps="{'value': 100}" :valid="true" />
-        <ParameterChip name="N Steps" :inputComponent="ParameterChipUnitless" :parameterProps="{'value': 100}" :valid="true" />
-        <ParameterChip name="N Steps" :inputComponent="ParameterChipUnitless" :parameterProps="{'value': 100}" :valid="true" />
-        <ParameterChip name="N Steps" :inputComponent="ParameterChipUnitless" :parameterProps="{'value': 100}" :valid="true" />
-        <ParameterChip name="N Steps" :inputComponent="ParameterChipUnitless" :parameterProps="{'value': 100}" :valid="true" /> -->
-      </div>
+      <Parameters :directives="directives"></Parameters>
     </main>
 </template>
 
@@ -70,11 +49,4 @@ main {
   justify-content: center;
 }
 
-.chipContainer {
-  display: flex;
-  margin-top: 1rem;
-  padding-bottom: 1rem;
-  width: 80%;
-  overflow-x: scroll;
-}
 </style>

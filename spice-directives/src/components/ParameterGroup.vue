@@ -101,6 +101,9 @@ const parameter: ComputedRef<number | string | boolean> = computed(() => {
     if (!valid) {
         return ""
     }
+    if (childrenParameters.value.length == 0) {
+        return ""
+    }
     return childrenParameters.value.reduce((a, b) => {
         if (b == "") {
             return a

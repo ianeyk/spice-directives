@@ -4,42 +4,61 @@ import ParameterGroup from './ParameterGroup.vue';
 import type { parameterChipValue } from '@/types';
 
 const props = defineProps<{
-    directives: string[]
+    parameterSets: string[]
 }>()
 
-const directiveParts = props.directives.map((directive: string) => { return {
+const parameterParts = props.parameterSets.map((directive: string) => { return {
     name: directive.slice(0, directive.indexOf(' ')), // everything up to the first space
     parameters: directive.slice(directive.indexOf(' ') + 1), // everything after the first space
 }})
 
-const directiveNamesAsDocOpt: string = "<" + directiveParts.map(directive => directive.name).join(", ") + ">"
+const parameterNamesAsDocOpt: string = "<" + parameterParts.map(directive => directive.name).join(", ") + ">"
 
-const currentDirective: Ref<string> = ref(directiveParts[0].name)
+const currentParameters: Ref<string> = ref(parameterParts[0].name)
 
-const parameterChanged = (newValues: parameterChipValue) => {
-    currentDirective.value = String(newValues.parameter)
+const selectedParameterNameChanged = (newValues: parameterChipValue) => {
+    currentParameters.value = String(newValues.parameter)
 }
+
+const directiveChanged = (newValues: parameterChipValue) => {
+    directive.value = String(newValues.parameter)
+}
+
+const directive: Ref<string> = ref("")
 
 
 </script>
 
 <template>
     <div class="chipContainer">
-        <ParameterGroup :doc-opt="directiveNamesAsDocOpt" :top-level="true" :index="0" :optional="false" @parameter-changed="parameterChanged"></ParameterGroup>
-        <div v-for="directive in directiveParts">
-            <ParameterGroup :class="directive.name == currentDirective ? 'shown' : 'hidden'" :docOpt="directive.parameters" :topLevel="true" :index="0" :optional="false"></ParameterGroup>
+        <ParameterGroup :doc-opt="parameterNamesAsDocOpt" :top-level="true" :index="0" :optional="false" @parameter-changed="selectedParameterNameChanged"></ParameterGroup>
+        <div v-for="parametersPart in parameterParts">
+            <ParameterGroup :class="parametersPart.name == currentParameters ? 'shown' : 'hidden'" :docOpt="parametersPart.parameters" :topLevel="true" :index="0" :optional="false" @parameter-changed="directiveChanged"></ParameterGroup>
         </div>
+    </div>
+    <div class="directiveContainer">
+        <input type="text" v-model="directive">
     </div>
 </template>
 
 <style scoped>
 
 .chipContainer {
-  display: flex;
-  margin-top: 1rem;
-  padding-bottom: 1rem;
-  width: 80%;
-  overflow-x: scroll;
+    margin: auto;
+    display: flex;
+    margin-top: 1rem;
+    padding-bottom: 1rem;
+    width: 90%;
+    overflow-x: scroll;
+}
+
+.directiveContainer {
+    display: block;
+    width: 90%;
+}
+
+.directiveContainer input {
+    width: 100%;
 }
 
 .hidden {

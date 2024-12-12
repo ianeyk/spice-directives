@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import Parameters from './components/Parameters.vue';
 
-const directives = [
-  ".tran <Tstep> <Tstop> [<Tstart> [<dTmax>]] [<modifiers>]",
-  // ".tran2 <Tstep> <Tstop> [<Tstart> [<dTmax>]]",
+const parameterSets = [
+  // ".tran <Tstep> <Tstop> [<Tstart> [<dTmax>]] [<modifiers>]",
+  ".tran <Tstep> <Tstop> [<Tstart> [dTmax]] [modifiers]",
   ".ac <oct, dec, lin> <Nsteps> <StartFreq> <EndFreq>",
   ".dc <srcnam> <Vstart> <Vstop> <Vincr> [<srcnam2> <Vstart2> <Vstop2> <Vincr2>]",
 ]
@@ -21,7 +21,7 @@ const directives = [
     </header>
 
     <main>
-      <Parameters :directives="directives"></Parameters>
+      <Parameters :parameterSets="parameterSets"></Parameters>
     </main>
 </template>
 
@@ -42,12 +42,6 @@ p.instructions {
   font-size: large;
   margin-left: 10%;
   margin-right: 10%;
-}
-
-main {
-  display: flex;
-  line-height: 1.5;
-  justify-content: center;
 }
 
 </style>

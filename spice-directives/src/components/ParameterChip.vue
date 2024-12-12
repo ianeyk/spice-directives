@@ -185,9 +185,6 @@ watch([parameter, valid], () => {
     <h1 class="name">{{ parsedProps.name }}</h1>
     <component :is="parsedProps.inputComponent" v-bind="parsedProps.parameterProps" @parameter-changed="parameterChanged"></component>
   </div>
-  <div>
-    {{ props.optional }}
-  </div>
 </template>
 
 <style scoped>

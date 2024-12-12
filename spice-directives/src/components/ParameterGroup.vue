@@ -12,9 +12,9 @@ const assert = (assertion: boolean, message: string = "") => {
 
 const props = withDefaults(defineProps<{
     docOpt: string,
-    topLevel: boolean,
-    index: number,
-    optional: boolean,
+    topLevel?: boolean,
+    index?: number,
+    optional?: boolean,
 }>(), {
     topLevel: false,
     index: 0,
@@ -67,14 +67,16 @@ const parseDocOpt = (docOpt: string): string[] => {
             }
         }
     }
-    console.log(docOpt)
-    console.log(closingBracketIndex)
+
+    let betweenBrackets = docOpt.slice(firstBracketIndex + 1, closingBracketIndex)
+    if (isSimpleDocOpt(betweenBrackets) && isSingleParameter(betweenBrackets)) {
+        betweenBrackets = "<" + betweenBrackets + ">"
+    }
 
     return parseDocOpt(docOpt.slice(0, firstBracketIndex)).concat( // simple-parse everything before the first bracket
-            [docOpt.slice(firstBracketIndex + 1, closingBracketIndex)]).concat( // complex-parse the things between the brackets
+            [betweenBrackets]).concat( // send the things between the brackets for another recursive round of parsing
             parseDocOpt(docOpt.slice(closingBracketIndex + 1))) // simple-parse everything after the last bracket
                 // do not ever count the brackets themselves
-
 }
 
 const parsedDocOpt = parseDocOpt(props.docOpt)
@@ -141,10 +143,6 @@ watch([parameter, valid], () => {
     <div class="parameterGroupOuter">
         <div v-for="(option, index) in parsedDocOpt" :key="index">
             <component :is="isSingleParameter(option) ? ParameterChip : ParameterGroup" :doc-opt="option" :index="index" :optional="optional" @parameter-changed="parameterChanged"></component>
-        </div>
-        <br>
-        <div>
-            {{ optional }}
         </div>
     </div>
 </template>

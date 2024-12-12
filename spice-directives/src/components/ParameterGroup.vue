@@ -54,13 +54,27 @@ const parseDocOpt = (docOpt: string): string[] => {
         return parseSimpleDocOpt(docOpt)
     }
     const firstBracketIndex = docOpt.indexOf('[')
-    const reversedDocOpt = docOpt.split('').reverse().join('')
-    const lastBracketIndex = reversedDocOpt.indexOf(']')
+    let closingBracketIndex = 0
+    let netBrackets = 0
+    for (let index = firstBracketIndex; index < docOpt.length; index++) {
+        if (docOpt[index] == '[') {
+            netBrackets++
+        } else if (docOpt[index] == ']') {
+            netBrackets--
+            if (netBrackets == 0) {
+                closingBracketIndex = index
+                break
+            }
+        }
+    }
+    console.log(docOpt)
+    console.log(closingBracketIndex)
 
-    return parseSimpleDocOpt(docOpt.slice(0, firstBracketIndex)).concat( // simple-parse everything before the first bracket
-            [docOpt.slice(firstBracketIndex + 1, lastBracketIndex - 1)]).concat( // complex-parse the things between the brackets
-                parseSimpleDocOpt(docOpt.slice(docOpt.length - lastBracketIndex + 1))) // simple-parse everything after the last bracket
+    return parseDocOpt(docOpt.slice(0, firstBracketIndex)).concat( // simple-parse everything before the first bracket
+            [docOpt.slice(firstBracketIndex + 1, closingBracketIndex)]).concat( // complex-parse the things between the brackets
+            parseDocOpt(docOpt.slice(closingBracketIndex + 1))) // simple-parse everything after the last bracket
                 // do not ever count the brackets themselves
+
 }
 
 const parsedDocOpt = parseDocOpt(props.docOpt)

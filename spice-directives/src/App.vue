@@ -3,6 +3,7 @@ import Parameters from './components/Parameters.vue';
 
 const directives = [
   ".tran <Tstep> <Tstop> [<Tstart> [<dTmax>]] [<modifiers>]",
+  // ".tran2 <Tstep> <Tstop> [<Tstart> [<dTmax>]]",
   ".ac <oct, dec, lin> <Nsteps> <StartFreq> <EndFreq>",
   ".dc <srcnam> <Vstart> <Vstop> <Vincr> [<srcnam2> <Vstart2> <Vstop2> <Vincr2>]",
 ]

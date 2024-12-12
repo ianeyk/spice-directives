@@ -13,10 +13,12 @@ const assert = (assertion: boolean, message: string = "") => {
 const props = withDefaults(defineProps<{
     docOpt: string,
     topLevel?: boolean,
+    directiveName?: string,
     index?: number,
     optional?: boolean,
 }>(), {
     topLevel: false,
+    directiveName: undefined,
     index: 0,
     optional: false,
 })
@@ -109,17 +111,17 @@ const valid: ComputedRef<boolean> = computed(() => {
     return optional.value || childrenValid.value.every(x => x) // if each child is either optional or valid
 })
 const parameter: ComputedRef<number | string | boolean> = computed(() => {
-    if (!valid) {
-        return ""
-    }
+    // if (!valid.value) {
+    //     if (optional) {
+    //         return ""
+    //     } else {
+    //         return props.docOpt
+    //     }
+    // }
     if (childrenParameters.value.length == 0) {
         return ""
     }
-    return childrenParameters.value.reduce((a, b) => {
-        if (b == "") {
-            return a
-        }
-        return a + " " + b}) // combine child parameters with spaces in between
+    return childrenParameters.value.reduce((a, b) => (a + " " + b).trim()) // combine child parameters with spaces in between
 })
 
 const parameterChanged = (newValues: parameterChipValue) => {
@@ -140,16 +142,21 @@ watch([parameter, valid], () => {
 </script>
 
 <template>
-    <div class="parameterGroupOuter">
-        <div v-for="(option, index) in parsedDocOpt" :key="index">
-            <component :is="isSingleParameter(option) ? ParameterChip : ParameterGroup" :doc-opt="option" :index="index" :optional="optional" @parameter-changed="parameterChanged"></component>
+    <div>
+        <div class="parameterGroup">
+            <div v-for="(option, index) in parsedDocOpt" :key="index">
+                <component :is="isSingleParameter(option) ? ParameterChip : ParameterGroup" :doc-opt="option" :index="index" :optional="optional" @parameter-changed="parameterChanged"></component>
+            </div>
+        </div>
+        <div class="directiveContainer" v-if="topLevel && directiveName !== undefined">
+            <input type="text" :value="directiveName + ' ' + parameter">
         </div>
     </div>
 </template>
 
 <style scoped>
 
-.parameterGroupOuter {
+.parameterGroup {
     display: inline-flex;
     background-color: grey;
     padding-bottom: 1rem;
@@ -158,6 +165,16 @@ watch([parameter, valid], () => {
     margin-bottom: 1rem;
     border-color: black;
     border-style: solid;
+}
+
+.directiveContainer {
+    display: block;
+    width: 90%;
+    margin-left: 1rem;
+}
+
+.directiveContainer input {
+    width: 100%;
 }
 
 </style>

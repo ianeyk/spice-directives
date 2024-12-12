@@ -20,11 +20,9 @@ const selectedParameterNameChanged = (newValues: parameterChipValue) => {
     currentParameters.value = String(newValues.parameter)
 }
 
-const directiveChanged = (newValues: parameterChipValue) => {
-    directive.value = String(newValues.parameter)
+const parameterChanged = (newValues: parameterChipValue) => {
+    // directive.value = String(newValues.parameter)
 }
-
-const directive: Ref<string> = ref("")
 
 
 </script>
@@ -33,11 +31,8 @@ const directive: Ref<string> = ref("")
     <div class="chipContainer">
         <ParameterGroup :doc-opt="parameterNamesAsDocOpt" :top-level="true" :index="0" :optional="false" @parameter-changed="selectedParameterNameChanged"></ParameterGroup>
         <div v-for="parametersPart in parameterParts">
-            <ParameterGroup :class="parametersPart.name == currentParameters ? 'shown' : 'hidden'" :docOpt="parametersPart.parameters" :topLevel="true" :index="0" :optional="false" @parameter-changed="directiveChanged"></ParameterGroup>
+            <ParameterGroup :class="parametersPart.name == currentParameters ? 'shown' : 'hidden'" :docOpt="parametersPart.parameters" :topLevel="true" :directive-name="parametersPart.name" :index="0" :optional="false" @parameter-changed="parameterChanged"></ParameterGroup>
         </div>
-    </div>
-    <div class="directiveContainer">
-        <input type="text" v-model="directive">
     </div>
 </template>
 
@@ -50,15 +45,6 @@ const directive: Ref<string> = ref("")
     padding-bottom: 1rem;
     width: 90%;
     overflow-x: scroll;
-}
-
-.directiveContainer {
-    display: block;
-    width: 90%;
-}
-
-.directiveContainer input {
-    width: 100%;
 }
 
 .hidden {

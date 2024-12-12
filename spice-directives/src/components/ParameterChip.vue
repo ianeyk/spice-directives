@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { booleanParameterProps, parameterChipStatus, parameterChipProps, parameterChipValue, selectParameterProps, textParameterProps, unitlessParameterProps, unitsParameterProps, siPrefix, parameterChipInputValue } from '@/types';
+import type { parameterChipStatus, parameterChipProps, parameterChipValue, siPrefix, parameterChipInputValue } from '@/types';
 import { computed, ref, watch, type ComputedRef, type Ref } from 'vue';
 import ParameterChipBoolean from './ParameterChipBoolean.vue';
 import ParameterChipText from './ParameterChipText.vue';
@@ -156,17 +156,36 @@ const emit = defineEmits<{'parameterChanged': [parameterChipValue]}>()
 const parsedProps: parameterChipProps = parseOption(props.docOpt, true)
 
 const valid: Ref<boolean> = ref(parsedProps.valid)
-const parameter: Ref<number | string | boolean> = ref(parsedProps.parameterProps.value)
+
+const parameterToString = (newValue: string | number | boolean) => {
+    if (!valid.value) {
+        if (props.optional) {
+            return ""
+        } else {
+            return "<" + props.docOpt + ">"
+        }
+    } else {
+        return String(newValue)
+    }
+}
+
+const basicParameter: Ref<string> = ref(String(parsedProps.parameterProps.value))
+const parameter: Ref<string> = ref(parameterToString(parsedProps.parameterProps.value))
 
 const parameterChanged = (newValues: parameterChipInputValue) => {
-    parameter.value = newValues.parameter
     valid.value = newValues.valid
+    basicParameter.value = String(newValues.parameter)
+    parameter.value = parameterToString(newValues.parameter)
 }
 
 const status: ComputedRef<parameterChipStatus> = computed(() => props.optional ?
     (valid.value ? 'optionalvalid' : 'optionalInvalid') :
     (valid.value ? 'requiredvalid' : 'requiredInvalid')
 )
+
+watch(props, () => {
+    parameter.value = parameterToString(basicParameter.value)
+})
 
 watch([parameter, valid], () => {
   emit('parameterChanged', {
@@ -175,7 +194,9 @@ watch([parameter, valid], () => {
     valid: valid.value,
     empty: !valid.value,
   })
-});
+}, {immediate: true});
+
+parameter.value = parameterToString(parsedProps.parameterProps.value)
 
 
 </script>

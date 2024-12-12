@@ -2,10 +2,9 @@
 import Parameters from './components/Parameters.vue';
 
 const parameterSets = [
-  // ".tran <Tstep> <Tstop> [<Tstart> [<dTmax>]] [<modifiers>]",
-  ".tran <Tstep> <Tstop> [<Tstart> [dTmax]] [modifiers]",
-  ".ac <oct, dec, lin> <Nsteps> <StartFreq> <EndFreq>",
-  ".dc <srcnam> <Vstart> <Vstop> <Vincr> [<srcnam2> <Vstart2> <Vstop2> <Vincr2>]",
+  ".tran <Tstep:s> <Tstop:s> [<Tstart:s> [dTmax:s]] [-modifiers]",
+  ".ac <oct, dec, lin> <Nsteps> <StartFreq:Hz> <EndFreq:Hz>",
+  ".dc <_srcnam:V1> <Vstart:0:V> <Vstop:5:V> <Vincr:10:m:V> [<srcnam2> <Vstart2> <Vstop2> <Vincr2>]",
 ]
 
 </script>

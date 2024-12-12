@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { booleanParameterProps, parameterChipStatus, parameterChipProps, parameterChipValue, selectParameterProps, textParameterProps, unitlessParameterProps, unitsParameterProps, siPrefix, parameterChipInputValue } from '@/types';
-import { computed, ref, watch, type Component, type ComputedRef, type Ref } from 'vue';
+import { computed, ref, watch, type ComputedRef, type Ref } from 'vue';
 import ParameterChipBoolean from './ParameterChipBoolean.vue';
 import ParameterChipText from './ParameterChipText.vue';
 import ParameterChipSelect from './ParameterChipSelect.vue';

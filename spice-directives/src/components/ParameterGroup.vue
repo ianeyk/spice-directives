@@ -1,13 +1,8 @@
 <script setup lang="ts">
-import type { booleanParameterProps, parameterChipStatus, parameterChipProps, parameterChipValue, parameterProps, selectParameterProps, textParameterProps, unitlessParameterProps, unitsParameterProps, siPrefix } from '@/types';
-import { computed, ref, useTemplateRef, watch, type Component, type ComputedRef, type Ref } from 'vue';
-import ParameterChipUnits from './ParameterChipUnits.vue';
-import ParameterChipUnitless from './ParameterChipUnitless.vue';
-import ParameterChipSelect from './ParameterChipSelect.vue';
+import type { parameterChipValue } from '@/types';
+import { computed, ref, watch, type ComputedRef, type Ref } from 'vue';
 import ParameterChip from './ParameterChip.vue';
 import ParameterGroup from './ParameterGroup.vue'
-import ParameterChipBoolean from './ParameterChipBoolean.vue';
-import ParameterChipText from './ParameterChipText.vue';
 
 const assert = (assertion: boolean, message: string = "") => {
     if (!assertion) {

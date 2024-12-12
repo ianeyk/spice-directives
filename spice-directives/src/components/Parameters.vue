@@ -1,7 +1,5 @@
 <script setup lang="ts">
 import { ref, type Ref } from 'vue';
-import ParameterChip from './ParameterChip.vue';
-import ParameterChipSelect from './ParameterChipSelect.vue';
 import ParameterGroup from './ParameterGroup.vue';
 import type { parameterChipValue } from '@/types';
 

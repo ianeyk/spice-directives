@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { parameterChipInputValue, parameterChipValue, selectParameterProps } from '@/types';
+import type { parameterChipInputValue, selectParameterProps } from '@/types';
 import { ref, watch, type Ref } from 'vue';
 
 const props = defineProps<selectParameterProps>()
